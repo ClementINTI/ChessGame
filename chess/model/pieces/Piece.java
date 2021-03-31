@@ -25,8 +25,6 @@ public abstract class Piece {
 		return blanc;
 	}
 
-	public Deplacement deplacer(Plateau plateau) {
-		return null;
-	}
+	public abstract Deplacement deplacer(Plateau plateau);
 
 }

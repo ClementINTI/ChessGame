@@ -5,17 +5,15 @@ import chess.model.Plateau;
 
 import java.net.URL;
 
-public class Roi extends Piece{
+public class Pion extends Piece{
 
-
-
-    public Roi(String nom, boolean blanc) {
+    public Pion(String nom, boolean blanc) {
         super(nom, blanc);
     }
 
     @Override
     public String getNom() {
-        return "Roi";
+        return null;
     }
 
     @Override
@@ -27,5 +25,4 @@ public class Roi extends Piece{
     public Deplacement deplacer(Plateau plateau) {
         return null;
     }
-
 }
