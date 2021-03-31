@@ -1,6 +1,11 @@
-package chess.model;
+package chess.model.pieces;
 
-public class Piece {
+import chess.model.Deplacement;
+import chess.model.Plateau;
+
+import java.net.URL;
+
+public abstract class Piece {
 
 	private String nom;
 	private boolean blanc;
@@ -11,9 +16,10 @@ public class Piece {
 		this.blanc = blanc;
 	}
 
-	public String getNom() {
-		return nom;
-	}
+	public abstract String getNom();
+
+	public abstract URL getImage();
+
 
 	public boolean isBlanc() {
 		return blanc;
