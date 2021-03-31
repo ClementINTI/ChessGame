@@ -13,6 +13,7 @@ public class Main extends Application {
 			GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("vue/Plateau.fxml"));
 			Scene scene = new Scene(root, 800, 400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setTitle("Nos échecs ont du talent !");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
