@@ -2,6 +2,6 @@
 	
 <?import javafx.scene.layout.GridPane?>
 	
-<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="chess.PlateauController">
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="chess.controller.PlateauController">
 	<!-- TODO Add Nodes -->
 </GridPane>
