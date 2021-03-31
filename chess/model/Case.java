@@ -1,19 +1,21 @@
 package chess.model;
 
+import chess.model.pieces.Piece;
+
 public class Case {
-	private boolean estOccuper;
+	private Piece piece;
 
-	public Case(boolean estOccuper) {
+	public Case(Piece piece) {
 		super();
-		this.estOccuper = estOccuper;
+		this.piece = piece;
 	}
 
-	public boolean isEstOccuper() {
-		return estOccuper;
+	public Piece getPiece() {
+		return piece;
 	}
 
-	public void setEstOccuper(boolean estOccuper) {
-		this.estOccuper = estOccuper;
+	public void setPiece(Piece piece) {
+		this.piece = piece;
 	}
 
 }

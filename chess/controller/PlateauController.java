@@ -58,7 +58,7 @@ public class PlateauController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 
-		partie = new Partie();
+		partie = Partie.demmarrerPartie();
 
 		// Les boutons voir pour les méthodes une fois les classes faits.
 		buttonNewGame.setOnMouseClicked(event -> debutNouvellePartie());
@@ -68,7 +68,7 @@ public class PlateauController implements Initializable {
 	}
 
 	private void debutNouvellePartie() {
-		partie = new Partie();
+		partie = Partie.demmarrerPartie();
 
 		// a faire
 	}

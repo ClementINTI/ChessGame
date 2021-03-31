@@ -1,30 +1,50 @@
 package chess.model.pieces;
 
+import java.awt.Image;
+import java.net.URL;
+
+import chess.model.Case;
 import chess.model.Deplacement;
 import chess.model.Plateau;
 
-import java.net.URL;
-
-public abstract class Piece {
-
+public class Piece {
+	private Image image;
 	private String nom;
 	private boolean blanc;
 
+	/**
+	 * 
+	 * @param nom
+	 * @param blanc true pour blanc ; false pour noir
+	 */
 	public Piece(String nom, boolean blanc) {
 		super();
 		this.nom = nom;
 		this.blanc = blanc;
 	}
 
-	public abstract String getNom();
+	public String getNom() {
+		return nom;
 
-	public abstract URL getImage();
+	}
 
+	public URL getImage() {
+		return null;
+
+	}
 
 	public boolean isBlanc() {
 		return blanc;
 	}
 
-	public abstract Deplacement deplacer(Plateau plateau);
+	/**
+	 * Donne tout les déplacement
+	 * 
+	 * @return
+	 */
+	public Deplacement deplacer(Plateau plateau, Case emplacement) {
+		return null;
+
+	}
 
 }
