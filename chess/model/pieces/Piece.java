@@ -43,6 +43,7 @@ public class Piece {
 	 * @return
 	 */
 	public Deplacement deplacer(Plateau plateau, Case emplacement) {
+		// plateau.getListeCase();
 		return null;
 
 	}

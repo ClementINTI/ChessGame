@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import chess.model.Case;
 import chess.model.Partie;
+import chess.model.Plateau;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -54,10 +56,10 @@ public class PlateauController implements Initializable {
 	@FXML
 	private AnchorPane colonne0ligne7, colonne1ligne7, colonne2ligne7, colonne3ligne7, colonne4ligne7, colonne5ligne7,
 			colonne6ligne7, colonne7ligne7;
-
-	private List<AnchorPane> listeCasesFXML = new ArrayList<AnchorPane>();
 	// faire la classe
 	private Partie partie;
+
+	private List<AnchorPane> listeCasesFXML = new ArrayList<AnchorPane>();
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -80,11 +82,14 @@ public class PlateauController implements Initializable {
 				colonne6ligne5, colonne7ligne5, colonne0ligne6, colonne1ligne6, colonne2ligne6, colonne3ligne6,
 				colonne4ligne6, colonne5ligne6, colonne6ligne6, colonne7ligne6, colonne0ligne7, colonne1ligne7,
 				colonne2ligne7, colonne3ligne7, colonne4ligne7, colonne5ligne7, colonne6ligne7, colonne7ligne7));
-		// colonne0ligne0.setOnMouseClicked();
-//		List<Case>listeCase=partie.getPlateau().getListeCases();
+
+		Plateau plateau = partie.getPlateau();
+		List<Case> listeCase = plateau.getListeCase();
+
 		for (int i = 0; i < 64; i++) {
 			listeCasesFXML.get(i).setOnMouseClicked(event -> {
-
+				// Case emplacement=listeCase.get(i);
+				// emplacement.getPiece().deplacer(plateau, emplacement);
 			});
 		}
 	}
