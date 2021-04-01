@@ -119,7 +119,7 @@ public class PlateauController implements Initializable {
 		for (int i = 0; i < 64; i++) {
 			if (listeCase.get(i).getPiece() != null) {
 				// listeCasesFXML.get(i).setStyle("-fx-background-color: red");
-				listeCasesFXML.get(i).setStyle("-fx-background-image: url('/chess/piecesImage/white_king.png')");
+				listeCasesFXML.get(i).setStyle("-fx-background-image: url('/chess/piecesImage/white_king.png');-fx-background-repeat: no-repeat;-fx-background-position: center;");
 				// listeCasesFXML.get(i).setBackground(new Background(image));
 				// "/src/chess/piecesImage/white_king.png"
 				// new
