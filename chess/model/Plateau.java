@@ -1,9 +1,10 @@
 package chess.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import chess.model.pieces.Piece;
+import chess.model.pieces.*;
 
 public class Plateau {
 	private Case colonne0ligne0, colonne1ligne0, colonne2ligne0, colonne3ligne0, colonne4ligne0, colonne5ligne0,
@@ -20,28 +21,65 @@ public class Plateau {
 			colonne6ligne6, colonne7ligne6;
 	private Case colonne0ligne7, colonne1ligne7, colonne2ligne7, colonne3ligne7, colonne4ligne7, colonne5ligne7,
 			colonne6ligne7, colonne7ligne7;
-	private List<Piece> piecesNoir = new ArrayList<Piece>();
-	private List<Piece> piecesBlanc = new ArrayList<Piece>();
+	private static List<Piece> piecesNoir = new ArrayList<Piece>();
+	 private static  List<Piece> piecesBlanc = new ArrayList<Piece>();
+
+
+	private CouleurJoueur couleurJoueur;
+
+	/**private HashMap<Case, Piece> piecesNoir;
+	private HashMap<Case, Piece> piecesBlanc;**/
 
 	private Plateau() {
+
 		super();
+		this.couleurJoueur = CouleurJoueur.BLANC;
+		this.piecesBlanc = piecesBlanc;
+		this.piecesNoir = piecesNoir;
 	}
 
 	/**
 	 * !!! Finir d'implementer le constructeur !!!
-	 * 
-	 * @return Plateau à l'état initial
+	 *
+	 * @return Plateau ï¿½ l'ï¿½tat initial
 	 */
 	public static Plateau initialiserPlateau() {
+
+		for (CouleurJoueur joueur : CouleurJoueur.values()) {
+
+			/**HashMap<Case, Piece> piecesAll = piecesBlanc;**/
+			 if ( joueur.equals(CouleurJoueur.NOIR)) {
+				 piecesNoir.add(new Pion("Pion", false));
+				 piecesNoir.add(new Tour("Tour", false));
+				 piecesNoir.add(new Cavalier("Cavalier", false));
+				 piecesNoir.add(new Fou("Fou", false));
+				 piecesNoir.add(new Roi("Roi", false));
+				 piecesNoir.add(new Reine("Reine", false));
+			 } else {
+
+				 piecesBlanc.add(new Pion("Pion", true));
+				 piecesBlanc.add(new Tour("Tour", true));
+				 piecesBlanc.add(new Cavalier("Cavalier", true));
+				 piecesBlanc.add(new Fou("Fou", true));
+				 piecesBlanc.add(new Roi("Roi", true));
+				 piecesBlanc.add(new Reine("Reine", true));
+			 }
+		}
+
+
 		return new Plateau();
 
 	}
 
+	public enum CouleurJoueur {
+		BLANC,NOIR
+	}
+
 	/**
 	 * !!! a implementer !!!
-	 * 
+	 *
 	 * @param piece
-	 * @param position actuelle de la pièce
+	 * @param position actuelle de la piï¿½ce
 	 * @return
 	 */
 	public static Deplacement donnerDeplacement(Piece piece, Case position) {
