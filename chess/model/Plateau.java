@@ -63,8 +63,6 @@ public class Plateau {
 				 piecesBlanc.add(new Reine("Reine", true));
 			 }
 		}
-
-
 		return new Plateau();
 
 	}
