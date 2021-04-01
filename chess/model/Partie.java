@@ -3,6 +3,8 @@ package chess.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import chess.model.pieces.Piece;
+
 public class Partie {
 
 	private Plateau plateau;
@@ -46,16 +48,33 @@ public class Partie {
 	}
 
 	/**
-	 * a implementer
+	 * effectue le déplacement d'une pièce d'une case a une autre est passe le tour
+	 * a l'équipe suivante. Si la nouvelle case est occupé par une pièce, celle-ci
+	 * est supprimer.
 	 */
-	public void newDeplacement() {
-
+	public void newDeplacement(Deplacement deplacementEffectuer) {
+		Piece pieceDeplacer = deplacementEffectuer.getAncienneCase().getPiece();
+		if (deplacementEffectuer.getNouvelleCase().getPiece() == null) {
+			deplacementEffectuer.getNouvelleCase().setPiece(pieceDeplacer);
+		} else {
+			Piece pieceSupprimer = deplacementEffectuer.getNouvelleCase().getPiece();
+			deplacementEffectuer.getNouvelleCase().setPiece(pieceDeplacer);
+			plateau.supprimerPiece(pieceSupprimer);
+		}
+		deplacements.add(deplacementEffectuer);
+		deplacementEffectuer.getAncienneCase().setPiece(null);
+		tourDesBlanc = !tourDesBlanc;
 	}
 
 	/**
 	 * a implementer
 	 */
 	public void annulerDeplacement() {
-
+		int indexDernierElement = deplacements.size() - 1;
+		Deplacement deplacementaAnnuler = deplacements.remove(indexDernierElement);
+		Piece pieceDeplacer = deplacementaAnnuler.getNouvelleCase().getPiece();
+		deplacementaAnnuler.getNouvelleCase().setPiece(null);
+		deplacementaAnnuler.getAncienneCase().setPiece(pieceDeplacer);
+		tourDesBlanc = !tourDesBlanc;
 	}
 }
