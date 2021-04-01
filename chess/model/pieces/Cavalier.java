@@ -23,8 +23,8 @@ public class Cavalier extends Piece {
 		return "/src/chess/piecesImage/white_king.png";
 	}
 
-	@Override
+	/**@Override
 	public List<Deplacement> deplacer(Plateau plateau, Case emplacement) {
 		return null;
-	}
+	}**/
 }
