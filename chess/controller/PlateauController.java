@@ -111,23 +111,11 @@ public class PlateauController implements Initializable {
 		Plateau plateau = partie.getPlateau();
 		List<Case> listeCase = plateau.getListeCase();
 
-		/**
-		 * BackgroundImage image = new BackgroundImage(new
-		 * javafx.scene.image.Image("/src/chess/piecesImage/white_king.png",9,9,false,true),
-		 * BackgroundRepeat.REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT
-		 * );
-		 **/
+
 		for (int i = 0; i < 64; i++) {
 			if (listeCase.get(i).getPiece() != null) {
-				// listeCasesFXML.get(i).setStyle("-fx-background-color: red");
 				listeCasesFXML.get(i).setStyle(
 						"-fx-background-image: url('/chess/piecesImage/white_king.png');-fx-background-repeat: no-repeat;-fx-background-position: center;");
-				// listeCasesFXML.get(i).setBackground(new Background(image));
-				// "/src/chess/piecesImage/white_king.png"
-				// new
-				// Image(getClass().getResourceAsStream("/src/chess/piecesImage/white_king.png"));
-				// ImageView imageView =
-
 				// Sa c'est a clement
 				/*
 				 * } else if (i % 2 == 0) {
@@ -136,8 +124,6 @@ public class PlateauController implements Initializable {
 				 */
 			}
 		}
-
-		// a faire
 	}
 
 	private void annuler() {
