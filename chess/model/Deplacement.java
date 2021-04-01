@@ -1,33 +1,21 @@
 package chess.model;
 
 public class Deplacement {
-	private int lastX;
-	private int lastY;
-	private int newX;
-	private int newY;
+	private Case ancienneCase;
+	private Case nouvelleCase;
 
-	public Deplacement(int lastX, int lastY, int newX, int newY) {
+	public Deplacement(Case ancienneCase, Case nouvelleCase) {
 		super();
-		this.lastX = lastX;
-		this.lastY = lastY;
-		this.newX = newX;
-		this.newY = newY;
+		this.ancienneCase = ancienneCase;
+		this.nouvelleCase = nouvelleCase;
 	}
 
-	public int getLastX() {
-		return lastX;
+	public Case getAncienneCase() {
+		return ancienneCase;
 	}
 
-	public int getLastY() {
-		return lastY;
-	}
-
-	public int getNewX() {
-		return newX;
-	}
-
-	public int getNewY() {
-		return newY;
+	public Case getNouvelleCase() {
+		return nouvelleCase;
 	}
 
 }
