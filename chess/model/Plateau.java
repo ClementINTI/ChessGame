@@ -1,10 +1,15 @@
 package chess.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import chess.model.pieces.*;
+import chess.model.pieces.Cavalier;
+import chess.model.pieces.Fou;
+import chess.model.pieces.Piece;
+import chess.model.pieces.Pion;
+import chess.model.pieces.Reine;
+import chess.model.pieces.Roi;
+import chess.model.pieces.Tour;
 
 public class Plateau {
 	private Case colonne0ligne0, colonne1ligne0, colonne2ligne0, colonne3ligne0, colonne4ligne0, colonne5ligne0,
@@ -21,20 +26,66 @@ public class Plateau {
 			colonne6ligne6, colonne7ligne6;
 	private Case colonne0ligne7, colonne1ligne7, colonne2ligne7, colonne3ligne7, colonne4ligne7, colonne5ligne7,
 			colonne6ligne7, colonne7ligne7;
-	private static List<Piece> piecesNoir = new ArrayList<Piece>();
-	 private static  List<Piece> piecesBlanc = new ArrayList<Piece>();
 
-	 private List<Case> listeCase = new ArrayList<Case>();
+	private List<Piece> piecesNoir = new ArrayList<Piece>();
+	private List<Piece> piecesBlanc = new ArrayList<Piece>();
+	private List<Piece> piecesMorte = new ArrayList<Piece>();
 
-	private CouleurJoueur couleurJoueur;
+	private List<Case> listeCase = new ArrayList<Case>();
 
-	/**private HashMap<Case, Piece> piecesNoir;
-	private HashMap<Case, Piece> piecesBlanc;**/
+	/**
+	 * private HashMap<Case, Piece> piecesNoir; private HashMap<Case, Piece>
+	 * piecesBlanc;
+	 **/
 
 	private Plateau() {
-
 		super();
-		this.couleurJoueur = CouleurJoueur.BLANC;
+		// Construction de la liste de pièce noir
+		piecesNoir.add(new Tour("Tour1", false));
+		piecesNoir.add(new Cavalier("Cavalier1", false));
+		piecesNoir.add(new Fou("Fou1", false));
+		piecesNoir.add(new Reine("Reine", false));
+		piecesNoir.add(new Roi("Roi", false));
+		piecesNoir.add(new Fou("Fou2", false));
+		piecesNoir.add(new Cavalier("Cavalier2", false));
+		piecesNoir.add(new Tour("Tour2", false));
+		piecesNoir.add(new Pion("Pion1", false));
+		piecesNoir.add(new Pion("Pion2", false));
+		piecesNoir.add(new Pion("Pion3", false));
+		piecesNoir.add(new Pion("Pion4", false));
+		piecesNoir.add(new Pion("Pion5", false));
+		piecesNoir.add(new Pion("Pion6", false));
+		piecesNoir.add(new Pion("Pion7", false));
+		piecesNoir.add(new Pion("Pion8", false));
+		// Construction de la liste de pièce blanche
+		piecesBlanc.add(new Tour("Tour1", true));
+		piecesBlanc.add(new Cavalier("Cavalier1", true));
+		piecesBlanc.add(new Fou("Fou1", true));
+		piecesBlanc.add(new Reine("Reine", true));
+		piecesBlanc.add(new Roi("Roi", true));
+		piecesBlanc.add(new Fou("Fou2", true));
+		piecesBlanc.add(new Cavalier("Cavalier2", true));
+		piecesBlanc.add(new Tour("Tour2", true));
+		piecesBlanc.add(new Pion("Pion1", true));
+		piecesBlanc.add(new Pion("Pion2", true));
+		piecesBlanc.add(new Pion("Pion3", true));
+		piecesBlanc.add(new Pion("Pion4", true));
+		piecesBlanc.add(new Pion("Pion5", true));
+		piecesBlanc.add(new Pion("Pion6", true));
+		piecesBlanc.add(new Pion("Pion7", true));
+		piecesBlanc.add(new Pion("Pion8", true));
+		// Construction de la liste des case avec les pièces attribuer
+		for (int i = 0; i < 16; i++) {
+			Piece pieceSurLaCase = piecesNoir.get(i);
+			listeCase.add(new Case(pieceSurLaCase));
+		}
+		for (int i = 0; i < 32; i++) {
+			listeCase.add(new Case(null));
+		}
+		for (int i = 15; i >= 0; i--) {
+			Piece pieceSurLaCase = piecesBlanc.get(i);
+			listeCase.add(new Case(pieceSurLaCase));
+		}
 	}
 
 	/**
@@ -44,37 +95,12 @@ public class Plateau {
 	 */
 	public static Plateau initialiserPlateau() {
 
-		for (CouleurJoueur joueur : CouleurJoueur.values()) {
-
-			 if ( joueur.equals(CouleurJoueur.NOIR)) {
-				 piecesNoir.add(new Pion("Pion", false));
-				 piecesNoir.add(new Tour("Tour", false));
-				 piecesNoir.add(new Cavalier("Cavalier", false));
-				 piecesNoir.add(new Fou("Fou", false));
-				 piecesNoir.add(new Roi("Roi", false));
-				 piecesNoir.add(new Reine("Reine", false));
-			 } else {
-
-				 piecesBlanc.add(new Pion("Pion", true));
-				 piecesBlanc.add(new Tour("Tour", true));
-				 piecesBlanc.add(new Cavalier("Cavalier", true));
-				 piecesBlanc.add(new Fou("Fou", true));
-				 piecesBlanc.add(new Roi("Roi", true));
-				 piecesBlanc.add(new Reine("Reine", true));
-			 }
-		}
 		return new Plateau();
 
 	}
 
 	public List<Case> getListeCase() {
 		return listeCase;
-	}
-
-
-
-	public enum CouleurJoueur {
-		BLANC,NOIR
 	}
 
 	/**
@@ -84,9 +110,25 @@ public class Plateau {
 	 * @param position actuelle de la piï¿½ce
 	 * @return
 	 */
-	public static Deplacement donnerDeplacement(Piece piece, Case position) {
-		return null;
+	public List<Deplacement> donnerDeplacement(Piece piece, Case position) {
+		List<Deplacement> deplacementsPossible = new ArrayList<Deplacement>();
+		// listeCase
+		return piece.deplacer(this, position);
 
 	}
 
+	/**
+	 * Supprime une pièce de sa liste et l'ajoute à la liste des pièces supprimer.
+	 * 
+	 * @param pieceSupprimer
+	 */
+	public void supprimerPiece(Piece pieceSupprimer) {
+		if (pieceSupprimer.isBlanc()) {
+			piecesMorte.add(pieceSupprimer);
+			piecesBlanc.remove(pieceSupprimer);
+		} else {
+			piecesMorte.add(pieceSupprimer);
+			piecesNoir.remove(pieceSupprimer);
+		}
+	}
 }

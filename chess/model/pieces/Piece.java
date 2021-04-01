@@ -2,6 +2,7 @@ package chess.model.pieces;
 
 import java.awt.Image;
 import java.net.URL;
+import java.util.List;
 
 import chess.model.Case;
 import chess.model.Deplacement;
@@ -42,7 +43,7 @@ public class Piece {
 	 * 
 	 * @return
 	 */
-	public Deplacement deplacer(Plateau plateau, Case emplacement) {
+	public List<Deplacement> deplacer(Plateau plateau, Case emplacement) {
 		// plateau.getListeCase();
 		return null;
 

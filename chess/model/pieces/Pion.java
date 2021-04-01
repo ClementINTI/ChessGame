@@ -1,6 +1,7 @@
 package chess.model.pieces;
 
 import java.net.URL;
+import java.util.List;
 
 import chess.model.Case;
 import chess.model.Deplacement;
@@ -23,7 +24,7 @@ public class Pion extends Piece {
 	}
 
 	@Override
-	public Deplacement deplacer(Plateau plateau, Case emplacement) {
+	public List<Deplacement> deplacer(Plateau plateau, Case emplacement) {
 		return null;
 	}
 }
