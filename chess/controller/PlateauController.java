@@ -81,7 +81,12 @@ public class PlateauController implements Initializable {
 				colonne4ligne6, colonne5ligne6, colonne6ligne6, colonne7ligne6, colonne0ligne7, colonne1ligne7,
 				colonne2ligne7, colonne3ligne7, colonne4ligne7, colonne5ligne7, colonne6ligne7, colonne7ligne7));
 		// colonne0ligne0.setOnMouseClicked();
+//		List<Case>listeCase=partie.getPlateau().getListeCases();
+		for (int i = 0; i < 64; i++) {
+			listeCasesFXML.get(i).setOnMouseClicked(event -> {
 
+			});
+		}
 	}
 
 	private void debutNouvellePartie() {
