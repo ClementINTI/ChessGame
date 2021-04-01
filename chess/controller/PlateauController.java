@@ -97,6 +97,17 @@ public class PlateauController implements Initializable {
 	private void debutNouvellePartie() {
 		partie = Partie.demmarrerPartie();
 
+		Plateau plateau = partie.getPlateau();
+		List<Case> listeCase = plateau.getListeCase();
+
+		for (int i = 0; i < 64; i++) {
+			if (listeCase.get(i).getPiece() != null) {
+				listeCasesFXML.get(i).setStyle("-fx-background-color: red");
+			}
+		}
+		System.out.println(listeCase);
+		//System.out.println(listeCasesFXML);
+
 		// a faire
 	}
 
