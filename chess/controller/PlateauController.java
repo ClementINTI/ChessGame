@@ -13,8 +13,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 
 public class PlateauController implements Initializable {
 
@@ -100,12 +101,23 @@ public class PlateauController implements Initializable {
 		Plateau plateau = partie.getPlateau();
 		List<Case> listeCase = plateau.getListeCase();
 
+		/**BackgroundImage image = new BackgroundImage(new javafx.scene.image.Image("/src/chess/piecesImage/white_king.png",9,9,false,true),
+				BackgroundRepeat.REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT
+				);**/
+
+
+
 		for (int i = 0; i < 64; i++) {
 			if (listeCase.get(i).getPiece() != null) {
-				listeCasesFXML.get(i).setStyle("-fx-background-color: red");
+				//listeCasesFXML.get(i).setStyle("-fx-background-color: red");
+				listeCasesFXML.get(i).setStyle("-fx-background-image: url('/chess/piecesImage/white_king.png')");
+				//listeCasesFXML.get(i).setBackground(new Background(image));
+				//"/src/chess/piecesImage/white_king.png"
+				//new Image(getClass().getResourceAsStream("/src/chess/piecesImage/white_king.png"));
+				//ImageView imageView =
 			}
 		}
-		System.out.println(listeCase);
+		//System.out.println(listeCase);
 		//System.out.println(listeCasesFXML);
 
 		// a faire

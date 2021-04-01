@@ -9,7 +9,7 @@ import chess.model.Deplacement;
 import chess.model.Plateau;
 
 public class Piece {
-	private Image image;
+	private String image;
 	private String nom;
 	private boolean blanc;
 
@@ -22,6 +22,7 @@ public class Piece {
 		super();
 		this.nom = nom;
 		this.blanc = blanc;
+		this.image = "/src/chess/piecesImage/white_king.png";
 	}
 
 	public String getNom() {
@@ -29,8 +30,8 @@ public class Piece {
 
 	}
 
-	public URL getImage() {
-		return null;
+	public String getImage() {
+		return image;
 
 	}
 
@@ -39,7 +40,7 @@ public class Piece {
 	}
 
 	/**
-	 * Donne tout les déplacement
+	 * Donne tout les dï¿½placement
 	 * 
 	 * @return
 	 */
