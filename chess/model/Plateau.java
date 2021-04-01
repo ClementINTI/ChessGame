@@ -111,7 +111,7 @@ public class Plateau {
 	 * @return
 	 */
 	public List<Deplacement> donnerDeplacement(Piece piece, Case position) {
-		List<Deplacement> deplacementsPossible = new ArrayList<Deplacement>();
+		//List<Deplacement> deplacementsPossible = new ArrayList<Deplacement>();
 		// listeCase
 		return piece.deplacer(this, position);
 
