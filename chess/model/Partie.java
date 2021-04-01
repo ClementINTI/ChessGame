@@ -16,7 +16,7 @@ public class Partie {
 	private Partie() {
 		super();
 		this.tourDesBlanc = true;
-		plateau = Plateau.initialiserPlateau();
+		plateau = plateau.initialiserPlateau();
 	}
 
 	/**
@@ -25,7 +25,7 @@ public class Partie {
 	 * 
 	 * @return
 	 */
-	public static Partie demmarrerPartie() {
+	public Partie demmarrerPartie() {
 		return new Partie();
 	}
 

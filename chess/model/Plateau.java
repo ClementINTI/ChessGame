@@ -32,7 +32,7 @@ public class Plateau {
 	 * 
 	 * @return Plateau à l'état initial
 	 */
-	public static Plateau initialiserPlateau() {
+	public Plateau initialiserPlateau() {
 		return new Plateau();
 
 	}
