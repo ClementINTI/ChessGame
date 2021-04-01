@@ -68,7 +68,7 @@ public class PlateauController implements Initializable {
 	}
 
 	private void debutNouvellePartie() {
-		partie = partie.demmarrerPartie();
+		partie = Partie.demmarrerPartie();
 
 		// a faire
 	}
