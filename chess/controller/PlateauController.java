@@ -62,11 +62,18 @@ public class PlateauController implements Initializable {
 	private Partie partie;
 
 	private List<AnchorPane> listeCasesFXML = new ArrayList<AnchorPane>();
+	/**
+	 * Liste des emplacements possible l'index 0 contient l'emplacement initial de
+	 * la pièce
+	 */
+	private List<AnchorPane> listeDeplacementPossible = new ArrayList<AnchorPane>();
+	private boolean pieceSelectionner;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 
 		partie = Partie.demmarrerPartie();
+		pieceSelectionner = false;
 		listeCasesFXML.addAll(Arrays.asList(colonne0ligne0, colonne1ligne0, colonne2ligne0, colonne3ligne0,
 				colonne4ligne0, colonne5ligne0, colonne6ligne0, colonne7ligne0, colonne0ligne1, colonne1ligne1,
 				colonne2ligne1, colonne3ligne1, colonne4ligne1, colonne5ligne1, colonne6ligne1, colonne7ligne1,
@@ -96,15 +103,33 @@ public class PlateauController implements Initializable {
 	}
 
 	private void cliquerCase(MouseEvent event) {
-		Plateau plateau = partie.getPlateau();
 		AnchorPane caseSelectionner = (AnchorPane) event.getTarget();
+		Plateau plateau = partie.getPlateau();
 		int indexCase = listeCasesFXML.indexOf(caseSelectionner);
 		Case position = plateau.getListeCase().get(indexCase);
+
+		if (!pieceSelectionner) {
+			afficherDeplacementPossible(plateau, position, indexCase);
+		} else {/*
+				 * Deplacement deplacementEffectuer=new
+				 * Deplacement(listeDeplacementPossible.get(0),
+				 * plateau.getListeCase().get(indexCase))
+				 * partie.newDeplacement(deplacementEffectuer);
+				 */
+		}
+	}
+
+	private void afficherDeplacementPossible(Plateau plateau, Case position, int indexCaseSelectionner) {
 		List<Deplacement> deplacementPossible = plateau.donnerDeplacement(position);
+		listeDeplacementPossible.clear();
+		listeDeplacementPossible.add(listeCasesFXML.get(indexCaseSelectionner));
 		for (Deplacement deplacement : deplacementPossible) {
 			int indexNouvelleCase = plateau.getListeCase().indexOf(deplacement.getNouvelleCase());
-			listeCasesFXML.get(indexNouvelleCase).setStyle("-fx-background-color: red");
+			AnchorPane casePossible = listeCasesFXML.get(indexNouvelleCase);
+			casePossible.setStyle("-fx-background-color: red");
+			listeDeplacementPossible.add(casePossible);
 		}
+		pieceSelectionner = true;
 	}
 
 	private void updateVue() {
