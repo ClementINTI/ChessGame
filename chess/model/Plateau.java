@@ -2,6 +2,7 @@ package chess.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import chess.model.pieces.Cavalier;
 import chess.model.pieces.Fou;
@@ -31,7 +32,7 @@ public class Plateau {
 	private List<Piece> piecesBlanc = new ArrayList<Piece>();
 	private List<Piece> piecesMorte = new ArrayList<Piece>();
 
-	private List<Case> listeCase = new ArrayList<Case>();
+	private static List<Case> listeCase = new ArrayList<Case>();
 
 	/**
 	 * private HashMap<Case, Piece> piecesNoir; private HashMap<Case, Piece>
@@ -40,7 +41,7 @@ public class Plateau {
 
 	private Plateau() {
 		super();
-		// Construction de la liste de pièce noir
+		// Construction de la liste de piï¿½ce noir
 		piecesNoir.add(new Tour("Tour1", false));
 		piecesNoir.add(new Cavalier("Cavalier1", false));
 		piecesNoir.add(new Fou("Fou1", false));
@@ -57,7 +58,7 @@ public class Plateau {
 		piecesNoir.add(new Pion("Pion6", false));
 		piecesNoir.add(new Pion("Pion7", false));
 		piecesNoir.add(new Pion("Pion8", false));
-		// Construction de la liste de pièce blanche
+		// Construction de la liste de piï¿½ce blanche
 		piecesBlanc.add(new Tour("Tour1", true));
 		piecesBlanc.add(new Cavalier("Cavalier1", true));
 		piecesBlanc.add(new Fou("Fou1", true));
@@ -74,7 +75,7 @@ public class Plateau {
 		piecesBlanc.add(new Pion("Pion6", true));
 		piecesBlanc.add(new Pion("Pion7", true));
 		piecesBlanc.add(new Pion("Pion8", true));
-		// Construction de la liste des case avec les pièces attribuer
+		// Construction de la liste des case avec les piï¿½ces attribuer
 		for (int i = 0; i < 16; i++) {
 			Piece pieceSurLaCase = piecesNoir.get(i);
 			listeCase.add(new Case(pieceSurLaCase));
@@ -95,11 +96,17 @@ public class Plateau {
 	 */
 	public static Plateau initialiserPlateau() {
 
+		for (Case elem: listeCase) {
+
+			System.out.println(elem.getPiece());
+		}
+
+
 		return new Plateau();
 
 	}
 
-	public List<Case> getListeCase() {
+	public static List<Case> getListeCase() {
 		return listeCase;
 	}
 
@@ -118,7 +125,7 @@ public class Plateau {
 	}
 
 	/**
-	 * Supprime une pièce de sa liste et l'ajoute à la liste des pièces supprimer.
+	 * Supprime une piï¿½ce de sa liste et l'ajoute ï¿½ la liste des piï¿½ces supprimer.
 	 * 
 	 * @param pieceSupprimer
 	 */

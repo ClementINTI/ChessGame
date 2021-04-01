@@ -19,8 +19,8 @@ public class Fou extends Piece {
 	}
 
 	@Override
-	public URL getImage() {
-		return null;
+	public String getImage() {
+		return "/src/chess/piecesImage/white_king.png";
 	}
 
 	@Override
