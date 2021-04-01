@@ -7,15 +7,16 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import chess.model.Case;
+import chess.model.Deplacement;
 import chess.model.Partie;
 import chess.model.Plateau;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 public class PlateauController implements Initializable {
 
@@ -66,9 +67,11 @@ public class PlateauController implements Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 
 		partie = Partie.demmarrerPartie();
-
 		// Les boutons voir pour les méthodes une fois les classes faits.
-		buttonNewGame.setOnMouseClicked(event -> debutNouvellePartie());
+		buttonNewGame.setOnMouseClicked(event -> {
+			partie = Partie.demmarrerPartie();
+			updatePartie();
+		});
 		buttonQuit.setOnMouseClicked(event -> System.exit(0));
 		buttonUndo.setOnMouseClicked(event -> annuler());
 		// listeCasesFXML.addAll(Collections.addAll(c, elements));
@@ -83,42 +86,55 @@ public class PlateauController implements Initializable {
 				colonne6ligne5, colonne7ligne5, colonne0ligne6, colonne1ligne6, colonne2ligne6, colonne3ligne6,
 				colonne4ligne6, colonne5ligne6, colonne6ligne6, colonne7ligne6, colonne0ligne7, colonne1ligne7,
 				colonne2ligne7, colonne3ligne7, colonne4ligne7, colonne5ligne7, colonne6ligne7, colonne7ligne7));
+		updatePartie();
 
 		Plateau plateau = partie.getPlateau();
 		List<Case> listeCase = plateau.getListeCase();
 
 		for (int i = 0; i < 64; i++) {
-			listeCasesFXML.get(i).setOnMouseClicked(event -> {
-				// Case emplacement=listeCase.get(i);
-				// emplacement.getPiece().deplacer(plateau, emplacement);
-			});
+			listeCasesFXML.get(i).setOnMouseClicked(event -> cliquerCase(event));
 		}
 	}
 
-	private void debutNouvellePartie() {
-		partie = Partie.demmarrerPartie();
+	private void cliquerCase(MouseEvent event) {
+		Plateau plateau = partie.getPlateau();
+		AnchorPane caseSelectionner = (AnchorPane) event.getTarget();
+		int indexCase = listeCasesFXML.indexOf(caseSelectionner);
+		Case position = plateau.getListeCase().get(indexCase);
+		List<Deplacement> deplacementPossible = plateau.donnerDeplacement(position);
+		for (Deplacement deplacement : deplacementPossible) {
 
+		}
+	}
+
+	private void updatePartie() {
 		Plateau plateau = partie.getPlateau();
 		List<Case> listeCase = plateau.getListeCase();
 
-		/**BackgroundImage image = new BackgroundImage(new javafx.scene.image.Image("/src/chess/piecesImage/white_king.png",9,9,false,true),
-				BackgroundRepeat.REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT
-				);**/
-
-
-
+		/**
+		 * BackgroundImage image = new BackgroundImage(new
+		 * javafx.scene.image.Image("/src/chess/piecesImage/white_king.png",9,9,false,true),
+		 * BackgroundRepeat.REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT
+		 * );
+		 **/
 		for (int i = 0; i < 64; i++) {
 			if (listeCase.get(i).getPiece() != null) {
-				//listeCasesFXML.get(i).setStyle("-fx-background-color: red");
+				// listeCasesFXML.get(i).setStyle("-fx-background-color: red");
 				listeCasesFXML.get(i).setStyle("-fx-background-image: url('/chess/piecesImage/white_king.png')");
-				//listeCasesFXML.get(i).setBackground(new Background(image));
-				//"/src/chess/piecesImage/white_king.png"
-				//new Image(getClass().getResourceAsStream("/src/chess/piecesImage/white_king.png"));
-				//ImageView imageView =
+				// listeCasesFXML.get(i).setBackground(new Background(image));
+				// "/src/chess/piecesImage/white_king.png"
+				// new
+				// Image(getClass().getResourceAsStream("/src/chess/piecesImage/white_king.png"));
+				// ImageView imageView =
+
+				// Sa c'est a clement
+				/*
+				 * } else if (i % 2 == 0) {
+				 * listeCasesFXML.get(i).setStyle("-fx-background-color: white"); } else {
+				 * listeCasesFXML.get(i).setStyle("-fx-background-color: black");
+				 */
 			}
 		}
-		//System.out.println(listeCase);
-		//System.out.println(listeCasesFXML);
 
 		// a faire
 	}

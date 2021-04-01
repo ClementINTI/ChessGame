@@ -2,7 +2,6 @@ package chess.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import chess.model.pieces.Cavalier;
 import chess.model.pieces.Fou;
@@ -96,11 +95,10 @@ public class Plateau {
 	 */
 	public static Plateau initialiserPlateau() {
 
-		for (Case elem: listeCase) {
+		for (Case elem : listeCase) {
 
 			System.out.println(elem.getPiece());
 		}
-
 
 		return new Plateau();
 
@@ -117,15 +115,15 @@ public class Plateau {
 	 * @param position actuelle de la pi�ce
 	 * @return
 	 */
-	public List<Deplacement> donnerDeplacement(Piece piece, Case position) {
-		//List<Deplacement> deplacementsPossible = new ArrayList<Deplacement>();
-		// listeCase
-		return piece.deplacer(this, position);
+	public List<Deplacement> donnerDeplacement(Case position) {
+		Piece pieceAdeplacer = position.getPiece();
+		return pieceAdeplacer.deplacer(this, position);
 
 	}
 
 	/**
-	 * Supprime une pi�ce de sa liste et l'ajoute � la liste des pi�ces supprimer.
+	 * Supprime une pi�ce de sa liste et l'ajoute � la liste des pi�ces
+	 * supprimer.
 	 * 
 	 * @param pieceSupprimer
 	 */
