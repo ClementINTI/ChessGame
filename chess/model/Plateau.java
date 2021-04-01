@@ -24,6 +24,7 @@ public class Plateau {
 	private static List<Piece> piecesNoir = new ArrayList<Piece>();
 	 private static  List<Piece> piecesBlanc = new ArrayList<Piece>();
 
+	 private List<Case> listeCase = new ArrayList<Case>();
 
 	private CouleurJoueur couleurJoueur;
 
@@ -34,8 +35,6 @@ public class Plateau {
 
 		super();
 		this.couleurJoueur = CouleurJoueur.BLANC;
-		this.piecesBlanc = piecesBlanc;
-		this.piecesNoir = piecesNoir;
 	}
 
 	/**
@@ -47,7 +46,6 @@ public class Plateau {
 
 		for (CouleurJoueur joueur : CouleurJoueur.values()) {
 
-			/**HashMap<Case, Piece> piecesAll = piecesBlanc;**/
 			 if ( joueur.equals(CouleurJoueur.NOIR)) {
 				 piecesNoir.add(new Pion("Pion", false));
 				 piecesNoir.add(new Tour("Tour", false));
@@ -70,6 +68,12 @@ public class Plateau {
 		return new Plateau();
 
 	}
+
+	public List<Case> getListeCase() {
+		return listeCase;
+	}
+
+
 
 	public enum CouleurJoueur {
 		BLANC,NOIR
