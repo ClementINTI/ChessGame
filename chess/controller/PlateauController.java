@@ -102,7 +102,8 @@ public class PlateauController implements Initializable {
 		Case position = plateau.getListeCase().get(indexCase);
 		List<Deplacement> deplacementPossible = plateau.donnerDeplacement(position);
 		for (Deplacement deplacement : deplacementPossible) {
-
+			int indexNouvelleCase = plateau.getListeCase().indexOf(deplacement.getNouvelleCase());
+			listeCasesFXML.get(indexNouvelleCase).setStyle("-fx-background-color: red");
 		}
 	}
 
@@ -119,7 +120,8 @@ public class PlateauController implements Initializable {
 		for (int i = 0; i < 64; i++) {
 			if (listeCase.get(i).getPiece() != null) {
 				// listeCasesFXML.get(i).setStyle("-fx-background-color: red");
-				listeCasesFXML.get(i).setStyle("-fx-background-image: url('/chess/piecesImage/white_king.png');-fx-background-repeat: no-repeat;-fx-background-position: center;");
+				listeCasesFXML.get(i).setStyle(
+						"-fx-background-image: url('/chess/piecesImage/white_king.png');-fx-background-repeat: no-repeat;-fx-background-position: center;");
 				// listeCasesFXML.get(i).setBackground(new Background(image));
 				// "/src/chess/piecesImage/white_king.png"
 				// new
