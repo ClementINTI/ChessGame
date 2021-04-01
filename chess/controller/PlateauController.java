@@ -67,14 +67,6 @@ public class PlateauController implements Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 
 		partie = Partie.demmarrerPartie();
-		// Les boutons voir pour les méthodes une fois les classes faits.
-		buttonNewGame.setOnMouseClicked(event -> {
-			partie = Partie.demmarrerPartie();
-			updatePartie();
-		});
-		buttonQuit.setOnMouseClicked(event -> System.exit(0));
-		buttonUndo.setOnMouseClicked(event -> annuler());
-		// listeCasesFXML.addAll(Collections.addAll(c, elements));
 		listeCasesFXML.addAll(Arrays.asList(colonne0ligne0, colonne1ligne0, colonne2ligne0, colonne3ligne0,
 				colonne4ligne0, colonne5ligne0, colonne6ligne0, colonne7ligne0, colonne0ligne1, colonne1ligne1,
 				colonne2ligne1, colonne3ligne1, colonne4ligne1, colonne5ligne1, colonne6ligne1, colonne7ligne1,
@@ -86,10 +78,17 @@ public class PlateauController implements Initializable {
 				colonne6ligne5, colonne7ligne5, colonne0ligne6, colonne1ligne6, colonne2ligne6, colonne3ligne6,
 				colonne4ligne6, colonne5ligne6, colonne6ligne6, colonne7ligne6, colonne0ligne7, colonne1ligne7,
 				colonne2ligne7, colonne3ligne7, colonne4ligne7, colonne5ligne7, colonne6ligne7, colonne7ligne7));
-		updatePartie();
-
+		updateVue();
 		Plateau plateau = partie.getPlateau();
 		List<Case> listeCase = plateau.getListeCase();
+		// Les boutons voir pour les méthodes une fois les classes faits.
+		buttonNewGame.setOnMouseClicked(event -> {
+			partie = Partie.demmarrerPartie();
+			updateVue();
+		});
+		buttonQuit.setOnMouseClicked(event -> System.exit(0));
+		buttonUndo.setOnMouseClicked(event -> annuler());
+		// listeCasesFXML.addAll(Collections.addAll(c, elements));
 
 		for (int i = 0; i < 64; i++) {
 			listeCasesFXML.get(i).setOnMouseClicked(event -> cliquerCase(event));
@@ -107,7 +106,7 @@ public class PlateauController implements Initializable {
 		}
 	}
 
-	private void updatePartie() {
+	private void updateVue() {
 		Plateau plateau = partie.getPlateau();
 		List<Case> listeCase = plateau.getListeCase();
 
