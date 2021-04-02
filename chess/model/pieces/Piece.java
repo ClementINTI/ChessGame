@@ -50,13 +50,21 @@ public class Piece {
 		List<Case> listeCase  = plateau.getListeCase();
 		List<Deplacement> deplacements = new ArrayList<>();
 		for (int i = 0; i < 64; i++) {
-				if (emplacement != listeCase.get(i)) {
+			if (emplacement != listeCase.get(i)) {
+				if (listeCase.get(i).getPiece() != null) {
+					if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
+
+						deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+					}
+				} else {
 					deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
 				}
+			}
 		}
-	return deplacements;
 
 
+
+		return deplacements;
 	}
 
 }
