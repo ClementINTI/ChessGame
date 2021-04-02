@@ -31,17 +31,83 @@ public class Reine extends Piece {
 	public List<Deplacement> deplacer(Plateau plateau, Case emplacement) {
 		List<Case> listeCase = plateau.getListeCase();
 		List<Deplacement> deplacements = new ArrayList<>();
-		for (int i = 0; i < 64; i++) {
-			if (emplacement != listeCase.get(i)) {
-				if (listeCase.get(i).getPiece() != null) {
-					if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
-						deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+		int indexActuelle = listeCase.indexOf(emplacement);
+		int indexPossible = indexActuelle;
+		boolean continuerIteration = true;
+//deplacement vers le haut et la gauche
+		do {
+			if ((indexPossible % 8 > 0) && indexPossible > 7) {
+				indexPossible = indexPossible - 9;
+				Case casePossible = listeCase.get(indexPossible);
+				if (casePossible.getPiece() != null) {
+					continuerIteration = false;
+					if (casePossible.getPiece().isBlanc() != isBlanc()) {
+						deplacements.add(new Deplacement(emplacement, casePossible));
 					}
 				} else {
-					deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+					deplacements.add(new Deplacement(emplacement, casePossible));
 				}
+			} else {
+				continuerIteration = false;
 			}
-		}
+		} while (continuerIteration);
+		indexPossible = indexActuelle;
+		continuerIteration = true;
+		// deplacement vers le haut et la droite
+		do {
+			if ((indexPossible % 8 < 7) && indexPossible > 7) {
+				indexPossible = indexPossible - 7;
+				Case casePossible = listeCase.get(indexPossible);
+				if (casePossible.getPiece() != null) {
+					continuerIteration = false;
+					if (casePossible.getPiece().isBlanc() != isBlanc()) {
+						deplacements.add(new Deplacement(emplacement, casePossible));
+					}
+				} else {
+					deplacements.add(new Deplacement(emplacement, casePossible));
+				}
+			} else {
+				continuerIteration = false;
+			}
+		} while (continuerIteration);
+		indexPossible = indexActuelle;
+		continuerIteration = true;
+		// deplacement vers le bas et la gauche
+		do {
+			if ((indexPossible % 8 > 0) && indexPossible < 56) {
+				indexPossible = indexPossible + 7;
+				Case casePossible = listeCase.get(indexPossible);
+				if (casePossible.getPiece() != null) {
+					continuerIteration = false;
+					if (casePossible.getPiece().isBlanc() != isBlanc()) {
+						deplacements.add(new Deplacement(emplacement, casePossible));
+					}
+				} else {
+					deplacements.add(new Deplacement(emplacement, casePossible));
+				}
+			} else {
+				continuerIteration = false;
+			}
+		} while (continuerIteration);
+		indexPossible = indexActuelle;
+		continuerIteration = true;
+		// deplacement vers le bas et la droite
+		do {
+			if ((indexPossible % 8 < 7) && indexPossible < 56) {
+				indexPossible = indexPossible + 9;
+				Case casePossible = listeCase.get(indexPossible);
+				if (casePossible.getPiece() != null) {
+					continuerIteration = false;
+					if (casePossible.getPiece().isBlanc() != isBlanc()) {
+						deplacements.add(new Deplacement(emplacement, casePossible));
+					}
+				} else {
+					deplacements.add(new Deplacement(emplacement, casePossible));
+				}
+			} else {
+				continuerIteration = false;
+			}
+		} while (continuerIteration);
 		return deplacements;
 	}
 
