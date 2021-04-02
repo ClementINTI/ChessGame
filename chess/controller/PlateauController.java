@@ -93,6 +93,8 @@ public class PlateauController implements Initializable {
 		// Les boutons voir pour les méthodes une fois les classes faits.
 		buttonNewGame.setOnMouseClicked(event -> {
 			partie = Partie.demmarrerPartie();
+			pieceSelectionner = false;
+			ancienPlacement = null;
 			updateVue();
 		});
 		buttonQuit.setOnMouseClicked(event -> System.exit(0));
@@ -128,6 +130,7 @@ public class PlateauController implements Initializable {
 		Deplacement deplacementEffectuer = new Deplacement(ancienPlacement, position);
 		partie.newDeplacement(deplacementEffectuer);
 		pieceSelectionner = false;
+		ancienPlacement = null;
 		updateVue();
 	}
 
@@ -176,6 +179,8 @@ public class PlateauController implements Initializable {
 
 	private void annuler() {
 		partie.annulerDeplacement();
+		pieceSelectionner = false;
+		ancienPlacement = null;
 		updateVue();
 	}
 }
