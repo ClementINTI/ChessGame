@@ -29,16 +29,42 @@ public class Pion extends Piece {
 		List<Case> listeCase  = plateau.getListeCase();
 		List<Deplacement> deplacements = new ArrayList<>();
 		for (int i = 0; i < 64; i++) {
-			if (emplacement != listeCase.get(i)) {
-				if (listeCase.get(i).getPiece() != null) {
-					if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
-						deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+			System.out.println(listeCase.get(i));
+			/**if (listeCase.get(i).getPiece().isBlanc() == true) {**/
+				if (emplacement != listeCase.get(i)) {
+					if (listeCase.get(i).getPiece() != null) {
+						if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
+							if ( emplacement == listeCase.get(i+7) || emplacement == listeCase.get(i+9)) {
+								deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+							}
+
+						}
+					} else {
+						if ( emplacement == listeCase.get(i+8)) {
+							deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+						}
 					}
-				} else {
-					deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
 				}
-			}
+			/**} else {
+				if (emplacement != listeCase.get(i)) {
+					if (listeCase.get(i).getPiece() != null) {
+						if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
+							if ( emplacement == listeCase.get(i-7) || emplacement == listeCase.get(i-9)) {
+								deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+							}
+
+						}
+					} else {
+						if ( emplacement == listeCase.get(i-8)) {
+							deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+						}
+					}
+				}
+			}**/
+
 		}
+
+
 		return deplacements;
 	}
 
