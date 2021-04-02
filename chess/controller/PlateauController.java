@@ -108,18 +108,25 @@ public class PlateauController implements Initializable {
 		Plateau plateau = partie.getPlateau();
 		int indexCase = listeCasesFXML.indexOf(caseSelectionner);
 		Case position = plateau.getListeCase().get(indexCase);
-
 		if (!pieceSelectionner) {
-			afficherDeplacementPossible(plateau, position);
-		} else if (listeDeplacementPossible.contains(caseSelectionner)) {
-			effectuerDeplacement(position);
+			if (position.getPiece().isBlanc() == partie.isTourDesBlanc()) {
+				afficherDeplacementPossible(plateau, position);
+			}
+		} else if (pieceSelectionner) {
+			if (listeDeplacementPossible.contains(caseSelectionner)) {
+				effectuerDeplacement(position);
+			} else if (caseSelectionner == listeCasesFXML.get(plateau.getListeCase().indexOf(ancienPlacement))) {
+				pieceSelectionner = false;
+				updateVue();
+			}
 		}
+
 	}
 
 	private void effectuerDeplacement(Case position) {
 		Deplacement deplacementEffectuer = new Deplacement(ancienPlacement, position);
 		partie.newDeplacement(deplacementEffectuer);
-		pieceSelectionner = !pieceSelectionner;
+		pieceSelectionner = false;
 		updateVue();
 	}
 
