@@ -10,6 +10,7 @@ import chess.model.Case;
 import chess.model.Deplacement;
 import chess.model.Partie;
 import chess.model.Plateau;
+import chess.model.pieces.Piece;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -148,15 +149,21 @@ public class PlateauController implements Initializable {
 		List<Case> listeCase = plateau.getListeCase();
 
 		for (int i = 0; i < 64; i++) {
-			if (listeCase.get(i).getPiece() != null) {
+			Piece piece = listeCase.get(i).getPiece();
+			if (piece != null) {
 				/**
 				 * if (listeCase.get(i).getPiece().getNom() == "Reine") {
 				 * listeCasesFXML.get(i).setStyle( "-fx-background-image:
 				 * url('/chess/piecesImage/white_queen.png');-fx-background-repeat:
 				 * no-repeat;-fx-background-position: center;"); }
 				 **/
-				listeCasesFXML.get(i).setStyle(
-						"-fx-background-image: url('/chess/piecesImage/white_king.png');-fx-background-repeat: no-repeat;-fx-background-position: center;");
+				// listeCasesFXML.get(i).
+//				listeCasesFXML.get(i).setStyle(
+				// "-fx-background-image:
+				// url('/chess/piecesImage/white_king.png');-fx-background-repeat:
+				// no-repeat;-fx-background-position: center;");
+				listeCasesFXML.get(i).setStyle("-fx-background-image: url('" + piece.getImage()
+						+ "');-fx-background-repeat: no-repeat;-fx-background-position: center;");
 			} else {
 				if ((i % 2 == 0 && (i / 8) % 2 == 0) || (i % 2 != 0 && (i / 8) % 2 != 0)) {
 					listeCasesFXML.get(i).setStyle("-fx-background-color: white");
