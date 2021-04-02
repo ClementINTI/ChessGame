@@ -1,6 +1,5 @@
 package chess.model.pieces;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +20,16 @@ public class Roi extends Piece {
 
 	@Override
 	public String getImage() {
-		return "/chess/piecesImage/white_king.png";
+		if (isBlanc()) {
+			return "/chess/piecesImage/white_king.png";
+		} else {
+			return "/chess/piecesImage/black_king.png";
+		}
 	}
 
 	@Override
 	public List<Deplacement> deplacer(Plateau plateau, Case emplacement) {
-		List<Case> listeCase  = plateau.getListeCase();
+		List<Case> listeCase = plateau.getListeCase();
 		List<Deplacement> deplacements = new ArrayList<>();
 		for (int i = 0; i < 64; i++) {
 			if (emplacement != listeCase.get(i)) {
