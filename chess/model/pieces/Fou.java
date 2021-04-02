@@ -1,6 +1,7 @@
 package chess.model.pieces;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import chess.model.Case;
@@ -15,16 +16,25 @@ public class Fou extends Piece {
 
 	@Override
 	public String getNom() {
-		return null;
+		return "Fou";
 	}
 
 	@Override
 	public String getImage() {
-		return "/src/chess/piecesImage/white_king.png";
+		return "/src/chess/piecesImage/white_bishop.png";
 	}
 
-	/**@Override
+	@Override
 	public List<Deplacement> deplacer(Plateau plateau, Case emplacement) {
-		return null;
-	}**/
+		List<Case> listeCase  = plateau.getListeCase();
+		List<Deplacement> deplacements = new ArrayList<>();
+		for (int i = 0; i < 64; i++) {
+			if (emplacement != listeCase.get(i)) {
+				deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+			}
+		}
+		return deplacements;
+
+
+	}
 }

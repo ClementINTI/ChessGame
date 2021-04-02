@@ -10,6 +10,8 @@ import chess.model.Case;
 import chess.model.Deplacement;
 import chess.model.Partie;
 import chess.model.Plateau;
+import chess.model.pieces.Fou;
+import chess.model.pieces.Piece;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -64,7 +66,7 @@ public class PlateauController implements Initializable {
 	private List<AnchorPane> listeCasesFXML = new ArrayList<AnchorPane>();
 	/**
 	 * Liste des emplacements possible l'index 0 contient l'emplacement initial de
-	 * la pièce
+	 * la piï¿½ce
 	 */
 	private List<AnchorPane> listeDeplacementPossible = new ArrayList<AnchorPane>();
 	private boolean pieceSelectionner;
@@ -139,8 +141,14 @@ public class PlateauController implements Initializable {
 
 		for (int i = 0; i < 64; i++) {
 			if (listeCase.get(i).getPiece() != null) {
+				/**if (listeCase.get(i).getPiece().getNom() == "Reine") {
+					listeCasesFXML.get(i).setStyle(
+							"-fx-background-image: url('/chess/piecesImage/white_queen.png');-fx-background-repeat: no-repeat;-fx-background-position: center;");
+				}**/
 				listeCasesFXML.get(i).setStyle(
 						"-fx-background-image: url('/chess/piecesImage/white_king.png');-fx-background-repeat: no-repeat;-fx-background-position: center;");
+
+				//System.out.println(listeCase.get(i).getPiece().getNom());
 				// Sa c'est a clement
 				/*
 				 * } else if (i % 2 == 0) {
