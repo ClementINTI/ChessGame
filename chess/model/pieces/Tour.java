@@ -29,39 +29,31 @@ public class Tour extends Piece {
 		List<Case> listeCase  = plateau.getListeCase();
 		List<Deplacement> deplacements = new ArrayList<>();
 		for (int i = 0; i < 64; i++) {
-			System.out.println(listeCase.get(i));
-			if (emplacement.getPiece().isBlanc() == true) {
+			//System.out.println(listeCase.get(i));
+			if (emplacement.getPiece().isBlanc()) {
 				if (emplacement != listeCase.get(i)) {
-					//if (emplacement.getPiece().isBlanc()) {
 					if (listeCase.get(i).getPiece() != null) {
 						if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
-							if (emplacement == listeCase.get(i + 1) ||  emplacement == listeCase.get(i + 8) ) {
+							if (emplacement == listeCase.get(i + 7) || emplacement == listeCase.get(i + 9)) {
 								deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
 							}
 						}
 					} else {
-						if (emplacement == listeCase.get(i + 8) ||
-								emplacement == listeCase.get(i + 16) ||
-								emplacement == listeCase.get(i + 24) ||
-								emplacement == listeCase.get(i + 32) ||
-								emplacement == listeCase.get(i + 40) ||
-								//emplacement == listeCase.get(i + 48) ||
-								emplacement == listeCase.get(i + 52) ) {
+						if (emplacement == listeCase.get(i + 8) || emplacement == listeCase.get(i+16)) {
 							deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
 						}
 					}
-					//}
 				}
 			} else {
 				if (emplacement != listeCase.get(i)) {
 					if (listeCase.get(i).getPiece() != null) {
 						if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
-							if ( emplacement == listeCase.get(i-7) || emplacement == listeCase.get(i-9)) {
+							if ( emplacement == listeCase.get(i-8)) {
 								deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
 							}
 						}
 					} else {
-						if ( emplacement == listeCase.get(i-8)) {
+						if ( emplacement == listeCase.get(i-8) || emplacement == listeCase.get(i-16)) {
 							deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
 						}
 					}
