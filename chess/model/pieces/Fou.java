@@ -21,7 +21,7 @@ public class Fou extends Piece {
 
 	@Override
 	public String getImage() {
-		return "/src/chess/piecesImage/white_bishop.png";
+		return "/chess/piecesImage/white_bishop.png";
 	}
 
 	@Override

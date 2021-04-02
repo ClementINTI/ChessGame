@@ -21,7 +21,7 @@ public class Reine extends Piece {
 
 	@Override
 	public String getImage() {
-		return "/src/chess/piecesImage/white_queen.png";
+		return "/chess/piecesImage/white_queen.png";
 	}
 
 	@Override
