@@ -21,7 +21,7 @@ public class Pion extends Piece {
 
 	@Override
 	public String getImage() {
-		return "/src/chess/piecesImage/white_pawn.png";
+		return "/chess/piecesImage/white_pawn.png";
 	}
 
 	@Override

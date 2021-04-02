@@ -21,7 +21,7 @@ public class Cavalier extends Piece {
 
 	@Override
 	public String getImage() {
-		return "/src/chess/piecesImage/white_knight.png";
+		return "/chess/piecesImage/white_knight.png";
 	}
 
 	@Override

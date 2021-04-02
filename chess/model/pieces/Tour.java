@@ -21,7 +21,7 @@ public class Tour extends Piece {
 
 	@Override
 	public String getImage() {
-		return "/src/chess/piecesImage/white_rook.png";
+		return "/chess/piecesImage/white_rook.png";
 	}
 
 	@Override

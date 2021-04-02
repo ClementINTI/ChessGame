@@ -21,7 +21,7 @@ public class Roi extends Piece {
 
 	@Override
 	public String getImage() {
-		return "/src/chess/piecesImage/white_king.png";
+		return "/chess/piecesImage/white_king.png";
 	}
 
 	@Override
