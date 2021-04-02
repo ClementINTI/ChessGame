@@ -27,51 +27,33 @@ public class Tour extends Piece {
 			return "/chess/piecesImage/black_rook.png";
 		}
 	}
+
 	@Override
 	public List<Deplacement> deplacer(Plateau plateau, Case emplacement) {
-		List<Case> listeCase  = plateau.getListeCase();
+		List<Case> listeCase = plateau.getListeCase();
 		List<Deplacement> deplacements = new ArrayList<>();
-		for (int i = 0; i < 64; i++) {
-			//System.out.println(listeCase.get(i));
-			if (emplacement.getPiece().isBlanc()) {
-				if (emplacement != listeCase.get(i)) {
-					if (listeCase.get(i).getPiece() != null) {
-						if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
-							if (emplacement == listeCase.get(i+8) || emplacement == listeCase.get(i+1)
-									|| emplacement == listeCase.get(i-1) || emplacement == listeCase.get(i+8)) {
-								deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
-							}
-						} else {
-							if (emplacement == listeCase.get(i+1) || emplacement == listeCase.get(i-1)
-									|| emplacement == listeCase.get(i+8)|| emplacement == listeCase.get(i-8)) {
-								deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
-							}
-						}
-					} else {
-							if (emplacement == listeCase.get(i + 8) || emplacement == listeCase.get(i + 1)
-								|| emplacement == listeCase.get(i - 1) || emplacement == listeCase.get(i - 8) ) {
-								deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
-							}
-
+		int indexActuelle = listeCase.indexOf(emplacement);
+		int indexPossible = indexActuelle;
+		boolean continuerIteration = true;
+		//deplacement vers le haut et la gauche
+		do {
+			if ((indexPossible % 8 > 0) && indexPossible > 7) {
+				indexPossible = indexPossible + 8;
+				Case casePossible = listeCase.get(indexPossible);
+				if (casePossible.getPiece() != null) {
+					continuerIteration = false;
+					if (casePossible.getPiece().isBlanc() != isBlanc()) {
+						deplacements.add(new Deplacement(emplacement, casePossible));
 					}
+				} else {
+					deplacements.add(new Deplacement(emplacement, casePossible));
 				}
 			} else {
-				if (emplacement != listeCase.get(i)) {
-					if (listeCase.get(i).getPiece() != null) {
-						if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
-							if ( emplacement == listeCase.get(i-8)) {
-								deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
-							}
-						}
-					} else {
-						if ( emplacement == listeCase.get(i-8) || emplacement == listeCase.get(i+8)
-								|| emplacement == listeCase.get(i + 8) || emplacement == listeCase.get(i + 1) ) {
-							deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
-						}
-					}
-				}
+				continuerIteration = false;
 			}
-		}
+		} while (continuerIteration);
 		return deplacements;
 	}
+
+
 }
