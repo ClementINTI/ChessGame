@@ -56,15 +56,6 @@ public class Cavalier extends Piece {
 			deplacementPossible(deplacements, indexActuelle - 10, emplacement, listeCase);
 		if (caseEcartTop2 && caseEcartgauche1)
 			deplacementPossible(deplacements, indexActuelle - 17, emplacement, listeCase);
-
-		/**
-		 * for (int i = 0; i < 64; i++) { Case emplacementPossible=listeCase.get(i); if
-		 * (emplacementPossible.getPiece() != null){ if (emplacement !=
-		 * emplacementPossible) { if (emplacementPossible.getPiece().isBlanc() !=
-		 * emplacement.getPiece().isBlanc()) { deplacements.add(new
-		 * Deplacement(emplacement, emplacementPossible)); } } else {
-		 * deplacements.add(new Deplacement(emplacement, emplacementPossible)); } } }
-		 */
 		return deplacements;
 	}
 
@@ -73,10 +64,10 @@ public class Cavalier extends Piece {
 		Case casePossible = listeCase.get(indexPossible);
 		if (casePossible.getPiece() != null) {
 			if (casePossible.getPiece().isBlanc() != isBlanc()) {
-				deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+				deplacements.add(new Deplacement(emplacement, casePossible));
 			}
 		} else {
-			deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+			deplacements.add(new Deplacement(emplacement, casePossible));
 		}
 	}
 }
