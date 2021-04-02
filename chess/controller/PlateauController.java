@@ -69,8 +69,7 @@ public class PlateauController implements Initializable {
 
 	private List<AnchorPane> listeCasesFXML = new ArrayList<AnchorPane>();
 	/**
-	 * Liste des emplacements possible l'index 0 contient l'emplacement initial de
-	 * la pi�ce
+	 * Liste des emplacements possible
 	 */
 	private List<AnchorPane> listeDeplacementPossible = new ArrayList<AnchorPane>();
 	private boolean pieceSelectionner;
@@ -105,6 +104,7 @@ public class PlateauController implements Initializable {
 		Case position = plateau.getListeCase().get(indexCase);
 		if (!pieceSelectionner) {
 			if (position.getPiece().isBlanc() == partie.isTourDesBlanc()) {
+				caseSelectionner.setBorder(creerBordure(Color.BLUE));
 				afficherDeplacementPossible(plateau, position);
 			}
 		} else if (pieceSelectionner) {
@@ -132,7 +132,7 @@ public class PlateauController implements Initializable {
 		for (Deplacement deplacement : deplacementPossible) {
 			int indexNouvelleCase = plateau.getListeCase().indexOf(deplacement.getNouvelleCase());
 			AnchorPane casePossible = listeCasesFXML.get(indexNouvelleCase);
-			casePossible.setStyle("-fx-background-color: red");
+			casePossible.setBorder(creerBordure(Color.RED));
 			listeDeplacementPossible.add(casePossible);
 		}
 		pieceSelectionner = true;
@@ -145,24 +145,28 @@ public class PlateauController implements Initializable {
 		for (int i = 0; i < 64; i++) {
 			Piece piece = listeCase.get(i).getPiece();
 			if (piece != null) {
-				listeCasesFXML.get(i).setBorder(creerBordure(Color.RED));
+				attribuerBordure(i);
 				listeCasesFXML.get(i).setStyle("-fx-background-image: url('" + piece.getImage()
 						+ "');-fx-background-repeat: no-repeat;-fx-background-position: center;");
 			} else {
-				if ((i % 2 == 0 && (i / 8) % 2 == 0) || (i % 2 != 0 && (i / 8) % 2 != 0)) {
-					listeCasesFXML.get(i).setStyle("-fx-background-color: white");
-					listeCasesFXML.get(i).setBorder(creerBordure(Color.BLACK));
-
-				} else {
-					listeCasesFXML.get(i).setStyle("-fx-background-color: black");
-					listeCasesFXML.get(i).setBorder(creerBordure(Color.BLACK));
-				}
+				attribuerBordure(i);
 			}
 		}
 	}
 
+	private void attribuerBordure(int i) {
+		if ((i % 2 == 0 && (i / 8) % 2 == 0) || (i % 2 != 0 && (i / 8) % 2 != 0)) {
+			listeCasesFXML.get(i).setStyle("-fx-background-color: white");
+			listeCasesFXML.get(i).setBorder(creerBordure(Color.WHITE));
+
+		} else {
+			listeCasesFXML.get(i).setStyle("-fx-background-color: black");
+			listeCasesFXML.get(i).setBorder(creerBordure(Color.BLACK));
+		}
+	}
+
 	private Border creerBordure(Color couleur) {
-		return new Border(new BorderStroke(couleur, BorderStrokeStyle.SOLID, null, new BorderWidths(3)));
+		return new Border(new BorderStroke(couleur, BorderStrokeStyle.SOLID, null, new BorderWidths(5)));
 	}
 
 	private void demarrerPartie() {
