@@ -17,7 +17,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 public class PlateauController implements Initializable {
 
@@ -73,9 +78,6 @@ public class PlateauController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-
-		partie = Partie.demmarrerPartie();
-		pieceSelectionner = false;
 		listeCasesFXML.addAll(Arrays.asList(colonne0ligne0, colonne1ligne0, colonne2ligne0, colonne3ligne0,
 				colonne4ligne0, colonne5ligne0, colonne6ligne0, colonne7ligne0, colonne0ligne1, colonne1ligne1,
 				colonne2ligne1, colonne3ligne1, colonne4ligne1, colonne5ligne1, colonne6ligne1, colonne7ligne1,
@@ -87,20 +89,10 @@ public class PlateauController implements Initializable {
 				colonne6ligne5, colonne7ligne5, colonne0ligne6, colonne1ligne6, colonne2ligne6, colonne3ligne6,
 				colonne4ligne6, colonne5ligne6, colonne6ligne6, colonne7ligne6, colonne0ligne7, colonne1ligne7,
 				colonne2ligne7, colonne3ligne7, colonne4ligne7, colonne5ligne7, colonne6ligne7, colonne7ligne7));
-		updateVue();
-		Plateau plateau = partie.getPlateau();
-		List<Case> listeCase = plateau.getListeCase();
-		// Les boutons voir pour les méthodes une fois les classes faits.
-		buttonNewGame.setOnMouseClicked(event -> {
-			partie = Partie.demmarrerPartie();
-			pieceSelectionner = false;
-			ancienPlacement = null;
-			updateVue();
-		});
+		demarrerPartie();
+		buttonNewGame.setOnMouseClicked(event -> demarrerPartie());
 		buttonQuit.setOnMouseClicked(event -> System.exit(0));
 		buttonUndo.setOnMouseClicked(event -> annuler());
-		// listeCasesFXML.addAll(Collections.addAll(c, elements));
-
 		for (int i = 0; i < 64; i++) {
 			listeCasesFXML.get(i).setOnMouseClicked(event -> cliquerCase(event));
 		}
@@ -123,7 +115,6 @@ public class PlateauController implements Initializable {
 				updateVue();
 			}
 		}
-
 	}
 
 	private void effectuerDeplacement(Case position) {
@@ -154,27 +145,31 @@ public class PlateauController implements Initializable {
 		for (int i = 0; i < 64; i++) {
 			Piece piece = listeCase.get(i).getPiece();
 			if (piece != null) {
-				/**
-				 * if (listeCase.get(i).getPiece().getNom() == "Reine") {
-				 * listeCasesFXML.get(i).setStyle( "-fx-background-image:
-				 * url('/chess/piecesImage/white_queen.png');-fx-background-repeat:
-				 * no-repeat;-fx-background-position: center;"); }
-				 **/
-				// listeCasesFXML.get(i).
-//				listeCasesFXML.get(i).setStyle(
-				// "-fx-background-image:
-				// url('/chess/piecesImage/white_king.png');-fx-background-repeat:
-				// no-repeat;-fx-background-position: center;");
+				listeCasesFXML.get(i).setBorder(creerBordure(Color.RED));
 				listeCasesFXML.get(i).setStyle("-fx-background-image: url('" + piece.getImage()
 						+ "');-fx-background-repeat: no-repeat;-fx-background-position: center;");
 			} else {
 				if ((i % 2 == 0 && (i / 8) % 2 == 0) || (i % 2 != 0 && (i / 8) % 2 != 0)) {
 					listeCasesFXML.get(i).setStyle("-fx-background-color: white");
+					listeCasesFXML.get(i).setBorder(creerBordure(Color.BLACK));
+
 				} else {
 					listeCasesFXML.get(i).setStyle("-fx-background-color: black");
+					listeCasesFXML.get(i).setBorder(creerBordure(Color.BLACK));
 				}
 			}
 		}
+	}
+
+	private Border creerBordure(Color couleur) {
+		return new Border(new BorderStroke(couleur, BorderStrokeStyle.SOLID, null, new BorderWidths(3)));
+	}
+
+	private void demarrerPartie() {
+		partie = Partie.demmarrerPartie();
+		pieceSelectionner = false;
+		ancienPlacement = null;
+		updateVue();
 	}
 
 	private void annuler() {
