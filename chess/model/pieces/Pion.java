@@ -1,6 +1,5 @@
 package chess.model.pieces;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,49 +26,60 @@ public class Pion extends Piece {
 			return "/chess/piecesImage/black_pawn.png";
 		}
 	}
+
 	@Override
 	public List<Deplacement> deplacer(Plateau plateau, Case emplacement) {
-		List<Case> listeCase  = plateau.getListeCase();
+		List<Case> listeCase = plateau.getListeCase();
 		List<Deplacement> deplacements = new ArrayList<>();
-		for (int i = 1; i < 64; i++) {
-			//System.out.println(listeCase.get(i));
-			if (emplacement.getPiece().isBlanc() == true) {
-				if (emplacement != listeCase.get(i)) {
-					//if (emplacement.getPiece().isBlanc()) {
-						if (listeCase.get(i).getPiece() != null) {
-							if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
-								if (emplacement == listeCase.get(i + 7) || emplacement == listeCase.get(i + 9)) {
-									deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
-
-								}
-							}
-						} else {
-							if (listeCase.get(i).getPiece() == null)
-
-								if (emplacement == listeCase.get(i + 8)) {
-									deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
-								}
-							}
-						}
-					//}
-
-			} else {
-				if (emplacement != listeCase.get(i)) {
-					if (listeCase.get(i).getPiece() != null) {
-						if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
-							if ( emplacement == listeCase.get(i-7) || emplacement == listeCase.get(i-9)) {
-								deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
-							}
-						}
-					} else {
-						if ( emplacement == listeCase.get(i-8)) {
-							deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
-						}
+		int indexActuelle = listeCase.indexOf(emplacement);
+		if (emplacement.getPiece().isBlanc()) {
+			// Blanc va vers le haut
+			if (indexActuelle > 7) {
+				int indexPossible = indexActuelle + 8;
+				if (listeCase.get(indexPossible).getPiece() != null) {
+					if (listeCase.get(indexPossible).getPiece().isBlanc() == false) {
+						deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+					}
+				} else {
+					deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+				}
+				indexPossible = indexActuelle + 7;
+				if (listeCase.get(indexPossible).getPiece() != null) {
+					if (listeCase.get(indexPossible).getPiece().isBlanc() == false) {
+						deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+					}
+				}
+				indexPossible = indexActuelle + 9;
+				if (listeCase.get(indexPossible).getPiece() != null) {
+					if (listeCase.get(indexPossible).getPiece().isBlanc() == false) {
+						deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+					}
+				}
+			}
+		} else {
+			if (indexActuelle < 56) {
+				int indexPossible = indexActuelle - 8;
+				if (listeCase.get(indexPossible).getPiece() != null) {
+					if (listeCase.get(indexPossible).getPiece().isBlanc() == true) {
+						deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+					}
+				} else {
+					deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+				}
+				indexPossible = indexActuelle - 7;
+				if (listeCase.get(indexPossible).getPiece() != null) {
+					if (listeCase.get(indexPossible).getPiece().isBlanc() == true) {
+						deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+					}
+				}
+				indexPossible = indexActuelle - 9;
+				if (listeCase.get(indexPossible).getPiece() != null) {
+					if (listeCase.get(indexPossible).getPiece().isBlanc() == true) {
+						deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
 					}
 				}
 			}
 		}
 		return deplacements;
 	}
-
 }
