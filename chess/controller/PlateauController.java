@@ -111,12 +111,16 @@ public class PlateauController implements Initializable {
 
 		if (!pieceSelectionner) {
 			afficherDeplacementPossible(plateau, position);
-		} else {
-			Deplacement deplacementEffectuer = new Deplacement(ancienPlacement, position);
-			partie.newDeplacement(deplacementEffectuer);
-			pieceSelectionner = !pieceSelectionner;
-			updateVue();
+		} else if (listeDeplacementPossible.contains(caseSelectionner)) {
+			effectuerDeplacement(position);
 		}
+	}
+
+	private void effectuerDeplacement(Case position) {
+		Deplacement deplacementEffectuer = new Deplacement(ancienPlacement, position);
+		partie.newDeplacement(deplacementEffectuer);
+		pieceSelectionner = !pieceSelectionner;
+		updateVue();
 	}
 
 	private void afficherDeplacementPossible(Plateau plateau, Case position) {
@@ -146,21 +150,12 @@ public class PlateauController implements Initializable {
 				 **/
 				listeCasesFXML.get(i).setStyle(
 						"-fx-background-image: url('/chess/piecesImage/white_king.png');-fx-background-repeat: no-repeat;-fx-background-position: center;");
-
-				// System.out.println(listeCase.get(i).getPiece().getNom());
-				// Sa c'est a clement
-
 			} else {
 				if ((i % 2 == 0 && (i / 8) % 2 == 0) || (i % 2 != 0 && (i / 8) % 2 != 0)) {
-
 					listeCasesFXML.get(i).setStyle("-fx-background-color: white");
-
 				} else {
-
 					listeCasesFXML.get(i).setStyle("-fx-background-color: black");
-
 				}
-
 			}
 		}
 	}
