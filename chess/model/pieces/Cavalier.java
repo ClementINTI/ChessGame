@@ -32,15 +32,30 @@ public class Cavalier extends Piece {
 		List<Case> listeCase = plateau.getListeCase();
 		List<Deplacement> deplacements = new ArrayList<>();
 		int indexActuelle = listeCase.indexOf(emplacement);
-
-		deplacementPossible(deplacements, indexActuelle + 6, emplacement, listeCase);
-		deplacementPossible(deplacements, indexActuelle + 15, emplacement, listeCase);
-		deplacementPossible(deplacements, indexActuelle + 10, emplacement, listeCase);
-		deplacementPossible(deplacements, indexActuelle + 17, emplacement, listeCase);
-		deplacementPossible(deplacements, indexActuelle - 6, emplacement, listeCase);
-		deplacementPossible(deplacements, indexActuelle - 15, emplacement, listeCase);
-		deplacementPossible(deplacements, indexActuelle - 10, emplacement, listeCase);
-		deplacementPossible(deplacements, indexActuelle - 17, emplacement, listeCase);
+		boolean caseEcartTop1 = indexActuelle > 7;
+		boolean caseEcartTop2 = indexActuelle > 15;
+		boolean caseEcartBas1 = indexActuelle < 56;
+		boolean caseEcartBas2 = indexActuelle < 48;
+		boolean caseEcartdroite1 = indexActuelle % 8 < 7;
+		boolean caseEcartdroite2 = indexActuelle % 8 < 6;
+		boolean caseEcartgauche1 = indexActuelle % 8 > 0;
+		boolean caseEcartgauche2 = indexActuelle % 8 > 1;
+		if (caseEcartBas1 && caseEcartgauche2)
+			deplacementPossible(deplacements, indexActuelle + 6, emplacement, listeCase);
+		if (caseEcartBas2 && caseEcartgauche1)
+			deplacementPossible(deplacements, indexActuelle + 15, emplacement, listeCase);
+		if (caseEcartBas1 && caseEcartdroite2)
+			deplacementPossible(deplacements, indexActuelle + 10, emplacement, listeCase);
+		if (caseEcartBas2 && caseEcartdroite1)
+			deplacementPossible(deplacements, indexActuelle + 17, emplacement, listeCase);
+		if (caseEcartTop1 && caseEcartdroite2)
+			deplacementPossible(deplacements, indexActuelle - 6, emplacement, listeCase);
+		if (caseEcartTop2 && caseEcartdroite1)
+			deplacementPossible(deplacements, indexActuelle - 15, emplacement, listeCase);
+		if (caseEcartTop1 && caseEcartgauche2)
+			deplacementPossible(deplacements, indexActuelle - 10, emplacement, listeCase);
+		if (caseEcartTop2 && caseEcartgauche1)
+			deplacementPossible(deplacements, indexActuelle - 17, emplacement, listeCase);
 
 		/**
 		 * for (int i = 0; i < 64; i++) { Case emplacementPossible=listeCase.get(i); if
@@ -55,11 +70,13 @@ public class Cavalier extends Piece {
 
 	private void deplacementPossible(List<Deplacement> deplacements, int indexPossible, Case emplacement,
 			List<Case> listeCase) {
-		if (indexPossible < 64) {
-			Case casePossible = listeCase.get(indexPossible);
+		Case casePossible = listeCase.get(indexPossible);
+		if (casePossible.getPiece() != null) {
 			if (casePossible.getPiece().isBlanc() != isBlanc()) {
 				deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
 			}
+		} else {
+			deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
 		}
 	}
 }
