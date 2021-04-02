@@ -175,8 +175,7 @@ public class PlateauController implements Initializable {
 	}
 
 	private void annuler() {
-
-		// a faire
+		partie.annulerDeplacement();
+		updateVue();
 	}
-
 }
