@@ -21,15 +21,18 @@ public class Pion extends Piece {
 
 	@Override
 	public String getImage() {
-		return "/chess/piecesImage/white_pawn.png";
+		if (isBlanc()) {
+			return "/chess/piecesImage/white_pawn.png";
+		} else {
+			return "/chess/piecesImage/black_pawn.png";
+		}
 	}
-
 	@Override
 	public List<Deplacement> deplacer(Plateau plateau, Case emplacement) {
 		List<Case> listeCase  = plateau.getListeCase();
 		List<Deplacement> deplacements = new ArrayList<>();
 		for (int i = 0; i < 64; i++) {
-			System.out.println(listeCase.get(i));
+			//System.out.println(listeCase.get(i));
 			if (emplacement.getPiece().isBlanc() == true) {
 				if (emplacement != listeCase.get(i)) {
 					//if (emplacement.getPiece().isBlanc()) {
@@ -37,6 +40,7 @@ public class Pion extends Piece {
 							if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
 								if (emplacement == listeCase.get(i + 7) || emplacement == listeCase.get(i + 9)) {
 									deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+
 								}
 							}
 						} else {
