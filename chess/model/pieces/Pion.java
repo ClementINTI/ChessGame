@@ -40,7 +40,6 @@ public class Pion extends Piece {
 							if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
 								if (emplacement == listeCase.get(i + 7) || emplacement == listeCase.get(i + 9)) {
 									deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
-
 								}
 							}
 						} else {
