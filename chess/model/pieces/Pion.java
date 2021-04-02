@@ -30,29 +30,29 @@ public class Pion extends Piece {
 		List<Deplacement> deplacements = new ArrayList<>();
 		for (int i = 0; i < 64; i++) {
 			System.out.println(listeCase.get(i));
-			/**if (listeCase.get(i).getPiece().isBlanc() == true) {**/
+			if (emplacement.getPiece().isBlanc() == true) {
 				if (emplacement != listeCase.get(i)) {
-					if (listeCase.get(i).getPiece() != null) {
-						if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
-							if ( emplacement == listeCase.get(i+7) || emplacement == listeCase.get(i+9)) {
+					//if (emplacement.getPiece().isBlanc()) {
+						if (listeCase.get(i).getPiece() != null) {
+							if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
+								if (emplacement == listeCase.get(i + 7) || emplacement == listeCase.get(i + 9)) {
+									deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+								}
+							}
+						} else {
+							if (emplacement == listeCase.get(i + 8)) {
 								deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
 							}
-
 						}
-					} else {
-						if ( emplacement == listeCase.get(i+8)) {
-							deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
-						}
-					}
+					//}
 				}
-			/**} else {
+			} else {
 				if (emplacement != listeCase.get(i)) {
 					if (listeCase.get(i).getPiece() != null) {
 						if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
 							if ( emplacement == listeCase.get(i-7) || emplacement == listeCase.get(i-9)) {
 								deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
 							}
-
 						}
 					} else {
 						if ( emplacement == listeCase.get(i-8)) {
@@ -60,11 +60,8 @@ public class Pion extends Piece {
 						}
 					}
 				}
-			}**/
-
+			}
 		}
-
-
 		return deplacements;
 	}
 
