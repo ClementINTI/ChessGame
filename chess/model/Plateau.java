@@ -31,7 +31,7 @@ public class Plateau {
 	private List<Piece> piecesBlanc = new ArrayList<Piece>();
 	private List<Piece> piecesMorte = new ArrayList<Piece>();
 
-	private static List<Case> listeCase = new ArrayList<Case>();
+	private List<Case> listeCase = new ArrayList<Case>();
 
 	/**
 	 * private HashMap<Case, Piece> piecesNoir; private HashMap<Case, Piece>
@@ -94,17 +94,10 @@ public class Plateau {
 	 * @return Plateau � l'�tat initial
 	 */
 	public static Plateau initialiserPlateau() {
-
-		for (Case elem : listeCase) {
-
-			System.out.println(elem.getPiece());
-		}
-
 		return new Plateau();
-
 	}
 
-	public static List<Case> getListeCase() {
+	public List<Case> getListeCase() {
 		return listeCase;
 	}
 

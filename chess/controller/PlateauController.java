@@ -68,6 +68,7 @@ public class PlateauController implements Initializable {
 	 */
 	private List<AnchorPane> listeDeplacementPossible = new ArrayList<AnchorPane>();
 	private boolean pieceSelectionner;
+	private Case ancienPlacement;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -109,20 +110,19 @@ public class PlateauController implements Initializable {
 		Case position = plateau.getListeCase().get(indexCase);
 
 		if (!pieceSelectionner) {
-			afficherDeplacementPossible(plateau, position, indexCase);
-		} else {/*
-				 * Deplacement deplacementEffectuer=new
-				 * Deplacement(listeDeplacementPossible.get(0),
-				 * plateau.getListeCase().get(indexCase))
-				 * partie.newDeplacement(deplacementEffectuer);
-				 */
+			afficherDeplacementPossible(plateau, position);
+		} else {
+			Deplacement deplacementEffectuer = new Deplacement(ancienPlacement, position);
+			partie.newDeplacement(deplacementEffectuer);
+			pieceSelectionner = !pieceSelectionner;
+			updateVue();
 		}
 	}
 
-	private void afficherDeplacementPossible(Plateau plateau, Case position, int indexCaseSelectionner) {
+	private void afficherDeplacementPossible(Plateau plateau, Case position) {
+		ancienPlacement = position;
 		List<Deplacement> deplacementPossible = plateau.donnerDeplacement(position);
 		listeDeplacementPossible.clear();
-		listeDeplacementPossible.add(listeCasesFXML.get(indexCaseSelectionner));
 		for (Deplacement deplacement : deplacementPossible) {
 			int indexNouvelleCase = plateau.getListeCase().indexOf(deplacement.getNouvelleCase());
 			AnchorPane casePossible = listeCasesFXML.get(indexNouvelleCase);
@@ -135,7 +135,6 @@ public class PlateauController implements Initializable {
 	private void updateVue() {
 		Plateau plateau = partie.getPlateau();
 		List<Case> listeCase = plateau.getListeCase();
-
 
 		for (int i = 0; i < 64; i++) {
 			if (listeCase.get(i).getPiece() != null) {
