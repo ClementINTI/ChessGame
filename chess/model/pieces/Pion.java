@@ -39,17 +39,13 @@ public class Pion extends Piece {
 			// Noir va vers le haut
 			if (indexActuelle > 7) {
 				int indexPossible = indexActuelle + 8;
-				if (listeCase.get(indexPossible).getPiece() != null) {
-					if (listeCase.get(indexPossible).getPiece().isBlanc() == false) {
-						deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
-					}
-				} else {
+				if (listeCase.get(indexPossible).getPiece() == null) {
 					deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
 				}
 				if (caseEcartgauche1) {
 					indexPossible = indexActuelle + 7;
 					if (listeCase.get(indexPossible).getPiece() != null) {
-						if (listeCase.get(indexPossible).getPiece().isBlanc() == false) {
+						if (listeCase.get(indexPossible).getPiece().isBlanc() == true) {
 							deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
 						}
 					}
@@ -67,7 +63,7 @@ public class Pion extends Piece {
 					 */
 					indexPossible = indexActuelle + 9;
 					if (listeCase.get(indexPossible).getPiece() != null) {
-						if (listeCase.get(indexPossible).getPiece().isBlanc() == false) {
+						if (listeCase.get(indexPossible).getPiece().isBlanc() == true) {
 							deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
 						}
 					}
@@ -76,18 +72,14 @@ public class Pion extends Piece {
 		} else {
 			if (indexActuelle < 56) {
 				int indexPossible = indexActuelle - 8;
-				if (listeCase.get(indexPossible).getPiece() != null) {
-					if (listeCase.get(indexPossible).getPiece().isBlanc() == true) {
-						deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
-					}
-				} else {
+				if (listeCase.get(indexPossible).getPiece() == null) {
 					deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
 				}
 				if (caseEcartgauche1) {
 
 					indexPossible = indexActuelle - 7;
 					if (listeCase.get(indexPossible).getPiece() != null) {
-						if (listeCase.get(indexPossible).getPiece().isBlanc() == true) {
+						if (listeCase.get(indexPossible).getPiece().isBlanc() == false) {
 							deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
 						}
 					}
@@ -96,7 +88,7 @@ public class Pion extends Piece {
 
 					indexPossible = indexActuelle - 9;
 					if (listeCase.get(indexPossible).getPiece() != null) {
-						if (listeCase.get(indexPossible).getPiece().isBlanc() == true) {
+						if (listeCase.get(indexPossible).getPiece().isBlanc() == false) {
 							deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
 						}
 					}
