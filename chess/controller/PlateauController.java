@@ -127,11 +127,10 @@ public class PlateauController implements Initializable {
 
 	private void afficherDeplacementPossible(Plateau plateau, Case position) {
 		ancienPlacement = position;
-		List<Deplacement> deplacementPossible = plateau.donnerDeplacement(position);
+		List<Integer> deplacementPossible = plateau.donnerDeplacement(position);
 		listeDeplacementPossible.clear();
-		for (Deplacement deplacement : deplacementPossible) {
-			int indexNouvelleCase = plateau.getListeCase().indexOf(deplacement.getNouvelleCase());
-			AnchorPane casePossible = listeCasesFXML.get(indexNouvelleCase);
+		for (int deplacement : deplacementPossible) {
+			AnchorPane casePossible = listeCasesFXML.get(deplacement);
 			casePossible.setBorder(creerBordure(Color.RED));
 			listeDeplacementPossible.add(casePossible);
 		}

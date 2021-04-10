@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chess.model.Case;
-import chess.model.Deplacement;
 import chess.model.Plateau;
 
 public class Tour extends Piece {
@@ -28,9 +27,9 @@ public class Tour extends Piece {
 	}
 
 	@Override
-	public List<Deplacement> deplacer(Plateau plateau, Case emplacement) {
+	public List<Integer> deplacer(Plateau plateau, Case emplacement) {
 		List<Case> listeCase = plateau.getListeCase();
-		List<Deplacement> deplacements = new ArrayList<>();
+		List<Integer> deplacements = new ArrayList<>();
 		int indexActuelle = listeCase.indexOf(emplacement);
 		int indexPossible = indexActuelle;
 		boolean continuerIteration = true;
@@ -42,10 +41,10 @@ public class Tour extends Piece {
 				if (casePossible.getPiece() != null) {
 					continuerIteration = false;
 					if (casePossible.getPiece().isBlanc() != isBlanc()) {
-						deplacements.add(new Deplacement(emplacement, casePossible));
+						deplacements.add(indexPossible);
 					}
 				} else {
-					deplacements.add(new Deplacement(emplacement, casePossible));
+					deplacements.add(indexPossible);
 				}
 			} else {
 				continuerIteration = false;
@@ -61,10 +60,10 @@ public class Tour extends Piece {
 				if (casePossible.getPiece() != null) {
 					continuerIteration = false;
 					if (casePossible.getPiece().isBlanc() != isBlanc()) {
-						deplacements.add(new Deplacement(emplacement, casePossible));
+						deplacements.add(indexPossible);
 					}
 				} else {
-					deplacements.add(new Deplacement(emplacement, casePossible));
+					deplacements.add(indexPossible);
 				}
 			} else {
 				continuerIteration = false;
@@ -80,10 +79,10 @@ public class Tour extends Piece {
 				if (casePossible.getPiece() != null) {
 					continuerIteration = false;
 					if (casePossible.getPiece().isBlanc() != isBlanc()) {
-						deplacements.add(new Deplacement(emplacement, casePossible));
+						deplacements.add(indexPossible);
 					}
 				} else {
-					deplacements.add(new Deplacement(emplacement, casePossible));
+					deplacements.add(indexPossible);
 				}
 			} else {
 				continuerIteration = false;
@@ -99,10 +98,10 @@ public class Tour extends Piece {
 				if (casePossible.getPiece() != null) {
 					continuerIteration = false;
 					if (casePossible.getPiece().isBlanc() != isBlanc()) {
-						deplacements.add(new Deplacement(emplacement, casePossible));
+						deplacements.add(indexPossible);
 					}
 				} else {
-					deplacements.add(new Deplacement(emplacement, casePossible));
+					deplacements.add(indexPossible);
 				}
 			} else {
 				continuerIteration = false;

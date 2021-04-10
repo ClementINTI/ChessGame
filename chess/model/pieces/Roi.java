@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chess.model.Case;
-import chess.model.Deplacement;
 import chess.model.Plateau;
 
 public class Roi extends Piece {
@@ -28,17 +27,17 @@ public class Roi extends Piece {
 	}
 
 	@Override
-	public List<Deplacement> deplacer(Plateau plateau, Case emplacement) {
+	public List<Integer> deplacer(Plateau plateau, Case emplacement) {
 		List<Case> listeCase = plateau.getListeCase();
-		List<Deplacement> deplacements = new ArrayList<>();
+		List<Integer> deplacements = new ArrayList<>();
 		for (int i = 0; i < 64; i++) {
 			if (emplacement != listeCase.get(i)) {
 				if (listeCase.get(i).getPiece() != null) {
 					if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
-						deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+						deplacements.add(i);
 					}
 				} else {
-					deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+					deplacements.add(i);
 				}
 			}
 		}

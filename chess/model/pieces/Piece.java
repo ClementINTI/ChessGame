@@ -1,19 +1,16 @@
 package chess.model.pieces;
 
-import java.awt.Image;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import chess.model.Case;
-import chess.model.Deplacement;
-import chess.model.Partie;
 import chess.model.Plateau;
 
 public class Piece {
 	private String image;
 	private String nom;
 	private boolean blanc;
+	protected boolean aBouger;
 
 	/**
 	 * 
@@ -24,7 +21,12 @@ public class Piece {
 		super();
 		this.nom = nom;
 		this.blanc = blanc;
+		aBouger = false;
 		this.image = "/src/chess/piecesImage/white_king.png";
+	}
+
+	public void setaBouger() {
+		this.aBouger = true;
 	}
 
 	public String getNom() {
@@ -42,27 +44,25 @@ public class Piece {
 	}
 
 	/**
-	 * Donne tout les d�placement
+	 * Donne tout les index des cases possibles
 	 * 
 	 * @return
 	 */
-	public List<Deplacement> deplacer(Plateau plateau, Case emplacement) {
-		List<Case> listeCase  = plateau.getListeCase();
-		List<Deplacement> deplacements = new ArrayList<>();
+	public List<Integer> deplacer(Plateau plateau, Case emplacement) {
+		List<Case> listeCase = plateau.getListeCase();
+		List<Integer> deplacements = new ArrayList<>();
 		for (int i = 0; i < 64; i++) {
 			if (emplacement != listeCase.get(i)) {
 				if (listeCase.get(i).getPiece() != null) {
 					if (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
 
-						deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+						deplacements.add(i);
 					}
 				} else {
-					deplacements.add(new Deplacement(emplacement, listeCase.get(i)));
+					deplacements.add(i);
 				}
 			}
 		}
-
-
 
 		return deplacements;
 	}

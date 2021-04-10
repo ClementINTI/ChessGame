@@ -61,6 +61,7 @@ public class Partie {
 			deplacementEffectuer.getNouvelleCase().setPiece(pieceDeplacer);
 			plateau.supprimerPiece(pieceSupprimer);
 		}
+		pieceDeplacer.setaBouger();
 		deplacements.add(deplacementEffectuer);
 		deplacementEffectuer.getAncienneCase().setPiece(null);
 		tourDesBlanc = !tourDesBlanc;

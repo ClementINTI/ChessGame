@@ -90,14 +90,13 @@ public class Plateau {
 	/**
 	 * !!! a implementer !!!
 	 *
-	 * @param piece
+	 *
 	 * @param position actuelle de la pi�ce
-	 * @return
+	 * @return liste des index des cases possibles
 	 */
-	public List<Deplacement> donnerDeplacement(Case position) {
+	public List<Integer> donnerDeplacement(Case position) {
 		Piece pieceAdeplacer = position.getPiece();
 		return pieceAdeplacer.deplacer(this, position);
-
 	}
 
 	/**

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chess.model.Case;
-import chess.model.Deplacement;
 import chess.model.Plateau;
 
 public class Pion extends Piece {
@@ -28,9 +27,9 @@ public class Pion extends Piece {
 	}
 
 	@Override
-	public List<Deplacement> deplacer(Plateau plateau, Case emplacement) {
+	public List<Integer> deplacer(Plateau plateau, Case emplacement) {
 		List<Case> listeCase = plateau.getListeCase();
-		List<Deplacement> deplacements = new ArrayList<>();
+		List<Integer> deplacements = new ArrayList<>();
 
 		int indexActuelle = listeCase.indexOf(emplacement);
 		boolean caseEcartdroite1 = indexActuelle % 8 < 7;
@@ -40,31 +39,27 @@ public class Pion extends Piece {
 			if (indexActuelle > 7) {
 				int indexPossible = indexActuelle + 8;
 				if (listeCase.get(indexPossible).getPiece() == null) {
-					deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+					deplacements.add(indexPossible);
+				}
+				if (!aBouger) {
+					indexPossible = indexActuelle + 16;
+					if (listeCase.get(indexPossible).getPiece() == null) {
+						deplacements.add(indexPossible);
+					}
 				}
 				if (caseEcartgauche1) {
 					indexPossible = indexActuelle + 7;
 					if (listeCase.get(indexPossible).getPiece() != null) {
 						if (listeCase.get(indexPossible).getPiece().isBlanc() == true) {
-							deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+							deplacements.add(indexPossible);
 						}
 					}
 				}
 				if (caseEcartdroite1) {
-					/*
-					 * for (int i = 1; i < 64; i++) { //System.out.println(listeCase.get(i)); if
-					 * (emplacement.getPiece().isBlanc() == true) { if (emplacement !=
-					 * listeCase.get(i)) { //if (emplacement.getPiece().isBlanc()) { if
-					 * (listeCase.get(i).getPiece() != null) { if
-					 * (listeCase.get(i).getPiece().isBlanc() != emplacement.getPiece().isBlanc()) {
-					 * if (emplacement == listeCase.get(i + 7) || emplacement == listeCase.get(i +
-					 * 9)) { deplacements.add(new Deplacement(emplacement, listeCase.get(i))); } } }
-					 * else { if (listeCase.get(i).getPiece() == null)
-					 */
 					indexPossible = indexActuelle + 9;
 					if (listeCase.get(indexPossible).getPiece() != null) {
 						if (listeCase.get(indexPossible).getPiece().isBlanc() == true) {
-							deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+							deplacements.add(indexPossible);
 						}
 					}
 				}
@@ -73,14 +68,20 @@ public class Pion extends Piece {
 			if (indexActuelle < 56) {
 				int indexPossible = indexActuelle - 8;
 				if (listeCase.get(indexPossible).getPiece() == null) {
-					deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+					deplacements.add(indexPossible);
+				}
+				if (!aBouger) {
+					indexPossible = indexActuelle - 16;
+					if (listeCase.get(indexPossible).getPiece() == null) {
+						deplacements.add(indexPossible);
+					}
 				}
 				if (caseEcartgauche1) {
 
 					indexPossible = indexActuelle - 7;
 					if (listeCase.get(indexPossible).getPiece() != null) {
 						if (listeCase.get(indexPossible).getPiece().isBlanc() == false) {
-							deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+							deplacements.add(indexPossible);
 						}
 					}
 				}
@@ -89,7 +90,7 @@ public class Pion extends Piece {
 					indexPossible = indexActuelle - 9;
 					if (listeCase.get(indexPossible).getPiece() != null) {
 						if (listeCase.get(indexPossible).getPiece().isBlanc() == false) {
-							deplacements.add(new Deplacement(emplacement, listeCase.get(indexPossible)));
+							deplacements.add(indexPossible);
 						}
 					}
 				}
